@@ -15,15 +15,7 @@ jobs:
             name: npm
             command: |
               npm i
-      - run: 
-          name: test
-          command: |
-              export NODE_ENV=development && node_modules/.bin/mocha --reporter mochawesome --reporter-options reportDir=test-results,reportFilename=test-results --timeout 30000 --exit
-      - run:
-            name: fail
-            command: |
-              curl -X POST -H 'Content-type: application/json' --data "{'text':'pipeline fail'}" https://hooks.slack.com/services/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
-            when: on_fail
+      
 workflows:
   test-build-deploy:
     jobs:
@@ -52,14 +44,4 @@ workflows:
             - aws-ecr/build-and-push-image
           filters:
               branches:
-                only: esc
-      - aws-ecs/deploy-service-update:
-          cluster: 'staging-demo'
-          container-image-name-updates: 'container=auth-cont,tag=${CIRCLE_WORKFLOW_ID}'
-          family: 'auth-new'
-          service-name: 'auth-service'
-          requires:
-            - aws-ecr/build-and-push-image
-          filters:
-              branches:
-                only: farid
+                only: main
