@@ -37,7 +37,7 @@ workflows:
             - test
       - aws-ecs/deploy-service-update:
           cluster: 'naya-cluster'
-          container-image-name-updates: 'container=auth-cont,tag=${CIRCLE_WORKFLOW_ID}'
+          container-image-name-updates: 'container=todo,tag=${CIRCLE_WORKFLOW_ID}'
           family: 'todo-11-03'
           service-name: 'todo-svc'
           requires:
