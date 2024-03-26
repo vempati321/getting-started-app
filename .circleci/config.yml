@@ -36,10 +36,10 @@ workflows:
           requires:
             - test
       - aws-ecs/deploy-service-update:
-          cluster: 'staging-demo'
+          cluster: 'naya-cluster'
           container-image-name-updates: 'container=auth-cont,tag=${CIRCLE_WORKFLOW_ID}'
-          family: 'auth-new'
-          service-name: 'auth-service'
+          family: 'todo-11-03'
+          service-name: 'todo-svc'
           requires:
             - aws-ecr/build-and-push-image
           filters:
