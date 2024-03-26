@@ -27,7 +27,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           path: .
           profile-name: default
-          repo: auth
+          repo: wpadmin2
           region: ${AWS_REGION}
           registry-id: AWS_ECR_REGISTRY_ID
           tag: "${CIRCLE_WORKFLOW_ID}"
