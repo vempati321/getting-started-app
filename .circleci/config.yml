@@ -18,10 +18,10 @@ jobs:
           name: Get last task definition
           command: >
             TASK_DEFINITION_ARN=$(aws ecs describe-task-definition \
-                --task-definition 'todo-svc' \
+                --task-definition ${TASK_DEFINITION} \
                 --output text \
                 --query 'taskDefinition.taskDefinitionArn')
-            echo "export TASK_DEFINITION_ARN='${TASK_DEFINITION_ARN}'" >> "$BASH_ENV"
+            echo TASK_DEFINITION_ARN
       - aws-ecs/verify-revision-is-deployed:
           family: '${TASK_DEFINITION}'
           cluster: '${CLUSTER}'
