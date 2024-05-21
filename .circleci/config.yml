@@ -21,7 +21,7 @@ jobs:
                 --task-definition ${TASK_DEFINITION} \
                 --output text \
                 --query 'taskDefinition.taskDefinitionArn')
-            echo TASK_DEFINITION_ARN
+            echo ${TASK_DEFINITION_ARN}
       - aws-ecs/verify-revision-is-deployed:
           family: '${TASK_DEFINITION}'
           cluster: '${CLUSTER}'
