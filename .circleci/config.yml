@@ -38,6 +38,7 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           family: '${TASK_DEFINITION}'
+          service-name: 'todo-svc'
           cluster: '${CLUSTER}'
           container-image-name-updates: 'container=todo,tag=${CIRCLE_SHA1}'
       - verify-deployment:
