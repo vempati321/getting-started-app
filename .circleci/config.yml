@@ -21,8 +21,7 @@ jobs:
                 --task-definition ${TASK_DEFINITION} \
                 --output text \
                 --query 'taskDefinition.taskDefinitionArn')
-            echo "export TASK_DEFINITION_ARN='${TASK_DEFINITION_ARN}'" >>
-            "$BASH_ENV"
+            echo "export TASK_DEFINITION_ARN='${TASK_DEFINITION_ARN}'" >> "$BASH_ENV"
       - aws-ecs/verify-revision-is-deployed:
           family: '${TASK_DEFINITION}'
           cluster: '${CLUSTER}'
