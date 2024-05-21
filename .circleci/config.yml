@@ -18,14 +18,14 @@ jobs:
           name: Get last task definition
           command: >
             TASK_DEFINITION_ARN=$(aws ecs describe-task-definition \
-                --task-definition ${TASK_DEFINITION}-service \
+                --task-definition ${TASK_DEFINITION} \
                 --output text \
                 --query 'taskDefinition.taskDefinitionArn')
             echo "export TASK_DEFINITION_ARN='${TASK_DEFINITION_ARN}'" >>
             "$BASH_ENV"
       - aws-ecs/verify-revision-is-deployed:
-          family: '${TASK_DEFINITION}-service'
-          cluster: '${CLUSTER}-cluster'
+          family: '${TASK_DEFINITION}'
+          cluster: '${CLUSTER}'
           task-definition-arn: '${TASK_DEFINITION_ARN}'
 
 workflows:
@@ -37,8 +37,8 @@ workflows:
       - aws-ecs/deploy-service-update: # orb built-in job
           requires:
             - aws-ecr/build-and-push-image
-          family: '${TASK_DEFINITION}-service'
-          cluster: '${CLUSTER}-cluster'
+          family: '${TASK_DEFINITION}'
+          cluster: '${CLUSTER}'
           container-image-name-updates: 'container=todo,tag=${CIRCLE_SHA1}'
       - verify-deployment:
           requires:
