@@ -18,7 +18,7 @@ jobs:
           name: Get last task definition
           command: >
             TASK_DEFINITION_ARN=$(aws ecs describe-task-definition \
-                --task-definition ${TASK_DEFINITION} \
+                --task-definition 'todo-svc' \
                 --output text \
                 --query 'taskDefinition.taskDefinitionArn')
             echo "export TASK_DEFINITION_ARN='${TASK_DEFINITION_ARN}'" >> "$BASH_ENV"
