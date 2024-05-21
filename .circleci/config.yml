@@ -15,6 +15,11 @@ jobs:
             name: npm
             command: |
               npm i
+      - run:
+            name: success
+            command: |
+              curl -X POST -H 'Content-type: application/json' --data "{'text':'[CONTENT-API-STAGING][AWS ECS]$CI_PULL_REQUEST is deployed successfully on https://content-api-staging.idreamcareer.com.'}" https://hooks.slack.com/services/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
+            when: on_success 
       
 workflows:
   test-build-deploy:
