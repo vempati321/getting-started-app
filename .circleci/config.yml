@@ -18,7 +18,7 @@ jobs:
       - run:
             name: success
             command: |
-              curl -X POST -H 'Content-type: application/json' --data "{'text':'pipeline pass'}" https://hooks.slack.com/services/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
+               curl -X POST -H 'Content-type: application/json' --data "{'text':'pipeline pass'}" https://hooks.slack.com/services/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
             when: on_success 
       
 workflows:
