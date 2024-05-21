@@ -1,55 +1,45 @@
-version: 2.1
-setup: false
+version: 2.1 # 2.1 config required to use orbs
+
 orbs:
-  aws-ecs: circleci/aws-ecs@3.2.0
-  aws-ecr: circleci/aws-ecr@8.1.2
-  node: circleci/node@5.0.2
-  docker: circleci/docker@1.5.0
+  aws-ecr: circleci/aws-ecr@8.1.2 # use the AWS ECR orb
+  aws-ecs: circleci/aws-ecs@3.2.0 # use the AWS ECS orb
+  aws-cli: circleci/aws-cli@3.1.1 # use the AWS CLI orb
+
 jobs:
-  test:
-    docker:
-      - image: cimg/node:18.4.0
+  verify-deployment:
+    executor: aws-cli/default
     steps:
-      - checkout
+      - aws-cli/install
+      - aws-cli/setup:
+           aws-access-key-id: AWS_SECRET_ACCESS_KEY
+           aws-region: AWS_DEFAULT_REGION
+           aws-secret-access-key: AWS_DEFAULT_REGION
       - run:
-            name: npm
-            command: |
-              npm i
-      - run:
-            name: success
-            command: |
-               curl -X POST -H 'Content-type: application/json' --data "{'text':'pipeline pass'}" https://hooks.slack.com/services/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
-            when: on_success 
-      
+          name: Get last task definition
+          command: >
+            TASK_DEFINITION_ARN=$(aws ecs describe-task-definition \
+                --task-definition ${MY_APP_PREFIX}-service \
+                --output text \
+                --query 'taskDefinition.taskDefinitionArn')
+            echo "export TASK_DEFINITION_ARN='${TASK_DEFINITION_ARN}'" >>
+            "$BASH_ENV"
+      - aws-ecs/verify-revision-is-deployed:
+          family: '${MY_APP_PREFIX}-service'
+          cluster: '${MY_APP_PREFIX}-cluster'
+          task-definition-arn: '${TASK_DEFINITION_ARN}'
+
 workflows:
-  test-build-deploy:
+  build-and-deploy:
     jobs:
-      - test
-      - aws-ecr/build-and-push-image: # Use the pre-defined `build-and-push-image` job created
-          dockerfile: Dockerfile
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-cli-version: latest
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          path: .
-          profile-name: default
-          repo: wpadmin2
-          region: ${AWS_REGION}
-          registry-id: AWS_ECR_REGISTRY_ID
-          tag: "${CIRCLE_WORKFLOW_ID}"
-          push-image: true
-          platform: linux/amd64
-          requires:
-            - test
-          filters:
-              branches:
-                only: staging
-      - aws-ecs/deploy-service-update:
-          cluster: 'demo-cluster'
-          container-image-name-updates: 'container=todo,tag=${CIRCLE_WORKFLOW_ID}'
-          family: 'todo-11-03'
-          service-name: 'todo-svc'
+      - aws-ecr/build-and-push-image: # orb built-in job
+          repo: '${MY_APP_PREFIX}'
+          tag: '${CIRCLE_SHA1}'
+      - aws-ecs/deploy-service-update: # orb built-in job
           requires:
             - aws-ecr/build-and-push-image
-          filters:
-              branches:
-                only: staging
+          family: '${MY_APP_PREFIX}-service'
+          cluster: '${MY_APP_PREFIX}-cluster'
+          container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
+      - verify-deployment:
+          requires:
+            - aws-ecs/deploy-service-update
