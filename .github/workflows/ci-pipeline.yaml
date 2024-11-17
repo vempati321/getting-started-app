@@ -6,8 +6,15 @@ on:
         - main
 
 jobs:
-  docker:
+  docker-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v6
+        - name: Checkout
+          uses: actions/checkout@v4
+        
+        - uses: hadolint/hadolint-action@v3.1.0
+          with:
+            dockerfile: Dockerfile
+
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v6
