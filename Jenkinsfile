@@ -5,7 +5,7 @@ pipeline {
        steps {
          script {
            echo "Building"
-           bat "docker build -t ex1:latest ."
+           bat "docker build -t ex9:latest ."
          }
        }
      }
@@ -13,7 +13,7 @@ pipeline {
        steps {
          script {
            echo "runnig"
-           bat "docker run -dp 127.0.0.1:3000:3000 ex1"
+           bat "docker run -dp 127.0.0.1:3000:3000 ex9"
          }
        }
      }
