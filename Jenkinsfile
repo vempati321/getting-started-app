@@ -13,7 +13,6 @@ pipeline {
        steps {
          script {
            echo "runnig"
-           bat "docker run -dp 3000:3000 ex9"
          }
        }
      }
