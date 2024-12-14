@@ -33,6 +33,3 @@ jobs:
           tags: |
             ghcr.io/ahmed-elarosi/getting-started:latest
             ghcr.io/ahmed-elarosi/getting-started:${{ github.sha }}
-
-            # ghcr.io/${{ github.repository_owner }}/ahmed-elarosi/getting-started:latest
-            # ghcr.io/${{ github.repository_owner }}/ahmed-elarosi/getting-started:${{ github.sha }}
