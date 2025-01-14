@@ -9,8 +9,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: build-image
-        run: docker build . -t thedogg42/flamenco-blendluxcore:2.8a1
+        run: docker build . -t thedogg42/blendluxcore-headless-ubuntu:2.8a1
       - name: push image to docker hub
         run: |
           docker login -u thedoggo42 -p ${{secrets.DOCKER_HUB_TOKEN}}
-          docker push thedogg42/flamenco-blendluxcore:2.8a1
+          docker push thedogg42/blendluxcore-headless-ubuntu:2.8a1
