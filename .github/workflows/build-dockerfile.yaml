@@ -26,7 +26,7 @@ jobs:
 #          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push image to docker hub and login
         run: |
-          docker login -u ${{ github.repository_owner }} -p ${{secrets.GITHUB_TOKEN}} docker.pkg.github.com
+          docker login -u ${{ github.repository_owner }} -p ${{secrets.GITHUB_TOKEN}} ghcr.io
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/blendluxcore-headless-ubuntu:2.8a1
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           docker push $IMAGE_ID
