@@ -1,2 +1,2 @@
 from node:lts-alpine
-RUN apk add -update -nocache blender-headless=4.0.2
+RUN apk add -u -no-cache blender-headless=4.0.2
