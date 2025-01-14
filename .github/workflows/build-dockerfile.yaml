@@ -14,14 +14,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: build-image
-        run: docker build . -t thedogg42/blendluxcore-headless-ubuntu:2.8a1
+        run: docker build . -t thedogg42/blendluxcore-headless-ubuntu
 #      - name: Log in to the Container registry
 #        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
 #        with:
 #          registry: ${{ env.REGISTRY }}
 #          username: ${{ github.actor }}
 #          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push image to docker hub
+      - name: Push image to docker hub and login
         run: |
           docker login -u ${{ github.repository_owner }} -p ${{secrets.GITHUB_TOKEN}} docker.pkg.github.com
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/blendluxcore-headless-ubuntu:2.8a1
