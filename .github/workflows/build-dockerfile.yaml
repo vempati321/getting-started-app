@@ -1,0 +1,15 @@
+name: Build and Publish image to Docker Hub
+on:
+  [workflow_dispatch]
+
+jobs:
+  publish_image:
+    runs-on: lts-alpine
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build-image
+        run: docker build . -t thedogg42/flamenco-blendluxcore:2.8a1
+      - name: push image to docker hub
+        run: |
+          docker push thedogg42/flamenco-blendluxcore:2.8a1
