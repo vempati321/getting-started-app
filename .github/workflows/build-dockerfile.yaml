@@ -12,4 +12,5 @@ jobs:
         run: docker build . -t thedogg42/flamenco-blendluxcore:2.8a1
       - name: push image to docker hub
         run: |
+          docker login -u thedoggo42 -p ${{secrets.DOCKER_HUB_TOKEN}}
           docker push thedogg42/flamenco-blendluxcore:2.8a1
