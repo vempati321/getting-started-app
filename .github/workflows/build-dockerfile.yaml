@@ -24,7 +24,9 @@ jobs:
       - name: Push image to docker hub
         run: |
           docker login -u ${{ github.repository_owner }} -p ${{secrets.GITHUB_TOKEN}} docker.pkg.github.com
-          docker push ghcr.io/${{ github.repository_owner }}/blendluxcore-headless-ubuntu:2.8a1
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/blendluxcore-headless-ubuntu:2.8a1
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          docker push $IMAGE_ID
 #      - name: Generate artifact attestation
 #        uses: actions/attest-build-provenance@v2
 #        with:
