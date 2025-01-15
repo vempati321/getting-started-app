@@ -22,8 +22,9 @@ RUN export PATH=/flamenco:/flamenco/tools:$PATH
 ENV PATH=/flamenco:/flamenco/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # Delete downloaded archive
 RUN rm flamenco-3.6-linux-amd64.tar.gz
-# Copy entrypoint script to allow the worker arguments to be controlled using eniroment variables
+# Copy entrypoint script to allow the worker arguments to be controlled using eniroment variables and make it executable
 Copy entry.sh ./
+RUN chmod +x entry.sh
 # Run as non-root user to avoid potential security issues
 # Create new non-root user
 #RUN useradd -ms /bin/bash apprunner

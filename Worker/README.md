@@ -9,7 +9,7 @@
     - Default: hostname
 ### Custom
 - ```MANAGER_URL```: URL of the Flamenco Manager.
-    Controles the ```-manager``` argument, (not impimented: if not set to ```false```). Must be specified.
+    Controles the ```-manager``` argument, ignored if not specified.
 # Configuration
 ## Command Line Arguments
 - ```-debug```
