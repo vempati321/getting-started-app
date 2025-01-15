@@ -32,4 +32,4 @@ Copy entry.sh ./
 # Start the flamenco worker
 #ENTRYPOINT flamenco-worker -manager $MANAGER_URL
 # Debug stdinorker
-ENTRYPOINT entry.sh
+#ENTRYPOINT entry.sh
