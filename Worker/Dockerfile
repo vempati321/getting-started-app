@@ -15,8 +15,7 @@ RUN tar xzf flamenco-3.6-linux-amd64.tar.gz
 RUN chmod 777 flamenco-3.6-linux-amd64/flamenco-worker
 RUN chmod 777 flamenco-3.6-linux-amd64/tools/ffmpeg-linux-amd64
 # Move files to dedicated new folder
-RUN mkdir /flamenco
-RUN mv flamenco-3.6-linux-amd64/ flamenco/
+RUN mv /flamenco-3.6-linux-amd64 /flamenco
 # Add /usr/bin/flamenco and /usr/bin/flamenco/tools to $PATH to make it globally available
 RUN export PATH=/flamenco:/flamenco/tools:$PATH
 # Make it Persistent using docker config
