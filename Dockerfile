@@ -18,6 +18,8 @@ RUN chmod 777 flamenco-3.6-linux-amd64/tools/ffmpeg-linux-amd64
 RUN mv flamenco-3.6-linux-amd64 /usr/bin/flamenco
 # Add /usr/bin/flamenco and /usr/bin/flamenco/tools to $PATH to make it globally available
 RUN export PATH=/usr/bin/flamenco:/usr/bin/flamenco/tools:$PATH
+# Make it Persistent using docker config
+ENV PATH=/usr/bin/flamenco:/usr/bin/flamenco/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # Delete downloaded archive
 RUN rm flamenco-3.6-linux-amd64.tar.gz
 # Run as non-root user
