@@ -10,9 +10,9 @@ RUN apt-get install -y blender
 RUN apt-get install -y curl ca-certificates unzip
 # Download, install and permanently enable blender addons
 # Determine blender addon folder location
-RUN blender_plugin_location = "/usr/share/blender/scripts/addons"
+ENV blender_plugin_location = "/usr/share/blender/scripts/addons"
 # Set temp folder location
-RUN temp_addon_location = "/tmp/blender_addons/"
+ENV temp_addon_location = "/tmp/blender_addons/"
 # Download addons
 # blendluxcore
 RUN crul --create-dirs -O --output-dir $temp_addon_location "https://github.com/LuxCoreRender/BlendLuxCore/releases/download/blendluxcore_v2.8alpha1/BlendLuxCore-v2.8alpha1-linux64.zip"
