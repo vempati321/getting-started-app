@@ -8,8 +8,17 @@
 - ```FLAMENCO_WORKER_NAME```: The name of the Worker. 
     - Default: hostname
 ### Custom
+Not case sensitive.
 - ```MANAGER_URL```: URL of the Flamenco Manager.
-    Controles the ```-manager``` argument, ignored if not specified.
+    Controles the ```-manager``` argument, ignored if not specified. ```STRING```
+- ```REGISTER```: (Re-)Register at the main manager, ignored if not specified. Aquivalent to ```register```. ```BOOL```
+- ```LOG_LEVEL```: Controlles the log level. Defaults to ```normal```. ```STRING```
+    1. ```trace```: Enable trace-level logging. Aquivalent to ```-trace```.
+    2. ```debug```: Enables debug-level logging. Aquivalent to ```-debug```.
+    3. ```default``` or ```normal```: Normal logging level. (Default)
+    4. ```quiet```: Only log warning-level and worse. Aquivalent to ```-quiet```.
+- ```RESTART_EXIT_CODE```: Mark this Worker as restartable. It will exit with this code to signify it needs to be restarted. Aquivalent to ```-restart-exit-code```. ```INT```
+- ```CUSTOM```: Allows you to input any command line arguments as one continuous string. Interpreted at shell as bash. ```STRING```
 # Configuration
 ## Command Line Arguments
 - ```-debug```
