@@ -15,7 +15,7 @@ ENV blender_plugin_location = "/usr/share/blender/scripts/addons"
 ENV temp_addon_location = "/tmp/blender_addons/"
 # Download addons
 # blendluxcore
-RUN crul --create-dirs -O --output-dir $temp_addon_location "https://github.com/LuxCoreRender/BlendLuxCore/releases/download/blendluxcore_v2.8alpha1/BlendLuxCore-v2.8alpha1-linux64.zip"
+RUN curl --create-dirs -O --output-dir $temp_addon_location "https://github.com/LuxCoreRender/BlendLuxCore/releases/download/blendluxcore_v2.8alpha1/BlendLuxCore-v2.8alpha1-linux64.zip"
 # Unzip addons to addon directory
 # blendluxcore
 RUN unzip "${temp_addon_location%/}/BlendLuxCore-v2.8alpha1-linux64.zip" -d "${blender_plugin_location%/}/BlendLuxCore-v2.8alpha1-linux64"
