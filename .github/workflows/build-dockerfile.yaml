@@ -13,11 +13,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: build-image
+      - name: build-worker-image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/blendluxcore-flamenco-ubuntu:2.8a1
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')  
-          docker build . -t $IMAGE_ID
+          docker build /Worker/Dockerfile -t $IMAGE_ID
       - name: Push image to docker hub and login
         run: |
           echo ${{secrets.GITHUB_TOKEN}} | docker login -u ${{ github.repository_owner }} --password-stdin ghcr.io
