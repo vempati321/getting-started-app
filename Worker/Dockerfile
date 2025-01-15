@@ -27,10 +27,10 @@ Copy entry.sh ./
 RUN chmod +x entry.sh
 # Run as non-root user to avoid potential security issues
 # Create new non-root user
-#RUN useradd -ms /bin/bash apprunner
+RUN useradd -ms /bin/bash apprunner
 # Select non-root user as default
-#USER apprunner
+USER apprunner
 # Start the flamenco worker
-#ENTRYPOINT flamenco-worker -manager $MANAGER_URL
-# Debug stdinorker
-#ENTRYPOINT entry.sh
+ENTRYPOINT ./entry.sh
+# Debug stdout
+#ENTRYPOINT ./entry.sh
