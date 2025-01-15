@@ -6,8 +6,10 @@ RUN echo 'APT::Install-Recommends "0";' >> /etc/apt/apt.conf.d/00-docker
 RUN apt-get update
 # Install Blender and dependencies
 RUN apt-get install -y blender
+# Install curl
+RUN apt-get install -y curl
 # Download and extract flamenco from the website
-RUN wget "https://flamenco.blender.org/downloads/flamenco-3.6-linux-amd64.tar.gz"
+RUN curl -O "https://flamenco.blender.org/downloads/flamenco-3.6-linux-amd64.tar.gz"
 RUN tar xzf flamenco-3.6-linux-amd64.tar.gz
 # Install Flamenco Worker
 RUN make flamenco-3.6-linux-amd64/flamenco-worker
