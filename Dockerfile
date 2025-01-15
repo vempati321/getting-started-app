@@ -6,15 +6,17 @@ RUN echo 'APT::Install-Recommends "0";' >> /etc/apt/apt.conf.d/00-docker
 RUN apt-get update
 # Install Blender and dependencies
 RUN apt-get install -y blender
-# Install curl, ca-certificates and make
-RUN apt-get install -y curl ca-certificates make
+# Install curl and ca-certificates
+RUN apt-get install -y curl ca-certificates
 # Download and extract flamenco from the website
 RUN curl -O "https://flamenco.blender.org/downloads/flamenco-3.6-linux-amd64.tar.gz"
 RUN tar xzf flamenco-3.6-linux-amd64.tar.gz
 # Install Flamenco Worker
-RUN make flamenco-3.6-linux-amd64/flamenco-worker
+RUN chmod 777 flamenco-3.6-linux-amd64/flamenco-worker
 # Install ffmpeg
-RUN make flamenco-3.6-linux-amd64/tools/ffmpeg-linux-amd64
+RUN chmod 777 flamenco-3.6-linux-amd64/tools/ffmpeg-linux-amd64
+# test
+RUN flamenco-3.6-linux-amd64/flamenco-worker -h
 # Run as non-root user
 # Create new non-root user
 RUN useradd -ms /bin/bash apprunner
