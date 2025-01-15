@@ -1,4 +1,4 @@
-from ubuntu:24.04
+FROM ubuntu:24.04
 # Not installing suggested or recommended dependencies
 RUN echo 'APT::Install-Suggests "0";' >> /etc/apt/apt.conf.d/00-docker.
 RUN echo 'APT::Install-Recommends "0";' >> /etc/apt/apt.conf.d/00-docker
@@ -19,6 +19,6 @@ RUN chmod 777 flamenco-3.6-linux-amd64/tools/ffmpeg-linux-amd64
 RUN flamenco-3.6-linux-amd64/flamenco-worker -h
 # Run as non-root user
 # Create new non-root user
-RUN useradd -ms /bin/bash apprunner
+#RUN useradd -ms /bin/bash apprunner
 # Select non-root user as default
-USER apprunner
+#USER apprunner
