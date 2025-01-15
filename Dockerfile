@@ -15,9 +15,9 @@ RUN tar xzf flamenco-3.6-linux-amd64.tar.gz
 RUN chmod 777 flamenco-3.6-linux-amd64/flamenco-worker
 RUN chmod 777 flamenco-3.6-linux-amd64/tools/ffmpeg-linux-amd64
 # Move files to program folder
-RUN mv flamenco-3.6-linux-amd64 /usr/bin/flamenco
+RUN mv flamenco-3.6-linux-amd64 /usr/bin/flamenco-
 # Create link in /usr/bin to make it globally available
-RUN ln -s /usr/bin/flamenco/flamenco-worker /usr/bin/flamenco
+RUN ln -s /usr/bin/flamenco/flamenco-worker /usr/bin/flamenco-worker
 # Delete downloaded archive
 RUN rm flamenco-3.6-linux-amd64.tar.gz
 # Run as non-root user
