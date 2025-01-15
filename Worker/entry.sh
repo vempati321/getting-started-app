@@ -29,6 +29,6 @@ if [ -n "$CUSTOM" ]; then
     args+=("$CUSTOM")
 fi
 
-echo "${args[@]}" #debug arguments
+echo "Running with Arguments: " "${args[@]}" #debug arguments
 
 flamenco-worker "${args[@]}"  #launch flamenco-worker with args specified in args[]
