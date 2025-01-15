@@ -28,4 +28,4 @@ RUN rm flamenco-3.6-linux-amd64.tar.gz
 # Start the flamenco worker
 #ENTRYPOINT flamenco-worker -manager $MANAGER_URL
 # Debug stdinorker
-ENTRYPOINT flamenco-worker -h
+#ENTRYPOINT flamenco-worker -h
