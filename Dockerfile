@@ -26,6 +26,6 @@ RUN rm flamenco-3.6-linux-amd64.tar.gz
 # Select non-root user as default
 #USER apprunner
 # Start the flamenco worker
-#ENTRYPOINT flamenco -manager $MANAGER_URL
+#ENTRYPOINT flamenco-worker -manager $MANAGER_URL
 # Debug stdin
-ENTRYPOINT flamenco -h
+ENTRYPOINT flamenco-worker -h
