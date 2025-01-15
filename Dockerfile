@@ -11,12 +11,13 @@ RUN apt-get install -y curl ca-certificates
 # Download and extract flamenco from the website
 RUN curl -O "https://flamenco.blender.org/downloads/flamenco-3.6-linux-amd64.tar.gz"
 RUN tar xzf flamenco-3.6-linux-amd64.tar.gz
-# Install Flamenco Worker
+# Make files executable
 RUN chmod 777 flamenco-3.6-linux-amd64/flamenco-worker
-# Install ffmpeg
 RUN chmod 777 flamenco-3.6-linux-amd64/tools/ffmpeg-linux-amd64
-# test
-RUN flamenco-3.6-linux-amd64/flamenco-worker -h
+# Move files to program folder
+RUN mv flamenco-3.6-linux-amd64 /usr/bin/flamenco
+# Delete downloaded archive
+RUN rem flamenco-3.6-linux-amd64.tar.gz
 # Run as non-root user
 # Create new non-root user
 #RUN useradd -ms /bin/bash apprunner
