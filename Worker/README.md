@@ -1,3 +1,7 @@
+# Blender
+## Locations
+### Blender Plugin Location
+```$blender_plugin_location```: ```/usr/share/blender/scripts/addons```
 # Enviroment Variables
 ## Flamenco Worker
 ### Official
