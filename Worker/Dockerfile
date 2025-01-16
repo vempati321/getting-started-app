@@ -18,12 +18,13 @@ ENV temp_addon_location="/tmp/blender_addons/"
 RUN curl --create-dirs -O --output-dir "$temp_addon_location" "https://github.com/LuxCoreRender/BlendLuxCore/releases/download/blendluxcore_v2.8alpha1/BlendLuxCore-v2.8alpha1-linux64.zip"
 # Unzip addons to addon directory
 # blendluxcore
+RUN ls "${temp_addon_location%/}"
 RUN unzip "${temp_addon_location%/}/BlendLuxCore-v2.8alpha1-linux64" -d "${blender_plugin_location%/}/BlendLuxCore-v2.8alpha1-linux64"
 # Copy addons to addon directory
 # blendluxcore
 #RUN mv BlendLuxCore-v2.8alpha1-linux64.zip $blender_plugin_location
 # Copy install python script
-Copy install_addons.py ./
+COPY install_addons.py ./
 # Execute install python script
 RUN blender -b -P install_addons.py
 # Download and extract flamenco from the website
@@ -41,7 +42,7 @@ ENV PATH=/flamenco:/flamenco/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr
 # Delete downloaded archive
 RUN rm flamenco-3.6-linux-amd64.tar.gz
 # Copy entrypoint script to allow the worker arguments to be controlled using eniroment variables and make it executable
-Copy entry.sh ./
+COPY entry.sh ./
 RUN chmod +x entry.sh
 # Run as non-root user to avoid potential security issues
 # Create new non-root user
