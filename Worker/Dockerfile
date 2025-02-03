@@ -15,10 +15,10 @@ ENV blender_plugin_location="/usr/share/blender/scripts/addons"
 ENV temp_addon_location="/tmp/blender_addons/"
 # Download addons
 # blendluxcore
-RUN curl --create-dirs -O --output-dir "${temp_addon_location%/}" "https://github.com/LuxCoreRender/BlendLuxCore/releases/download/blendluxcore_v2.8alpha1/BlendLuxCore-v2.8alpha1-linux64.zip"
+RUN curl --create-dirs -O --output-dir "${temp_addon_location%/}" https://objects.githubusercontent.com/github-production-release-asset-2e65be/112486720/a7c1b45c-f055-44cd-b283-201b71c6bba2?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250203T134407Z&X-Amz-Expires=300&X-Amz-Signature=e1ab2b32c925a02ec36dc74da027662309325ed3b7f84cb3686fe1a089d9815d&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DBlendLuxCore-v2.8alpha1-linux64.zip&response-content-type=application%2Foctet-stream #"https://github.com/LuxCoreRender/BlendLuxCore/releases/download/blendluxcore_v2.8alpha1/BlendLuxCore-v2.8alpha1-linux64.zip"
 # Unzip addons to addon directory
 # blendluxcore
-RUN ls "${temp_addon_location%/}"
+RUN ls -l "${temp_addon_location%/}"
 RUN unzip "${temp_addon_location%/}/BlendLuxCore-v2.8alpha1-linux64" -d "${blender_plugin_location%/}/BlendLuxCore-v2.8alpha1-linux64"
 # Copy addons to addon directory
 # blendluxcore
