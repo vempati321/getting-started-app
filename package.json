@@ -6,12 +6,12 @@
   "scripts": {
     "prettify": "prettier -l --write \"**/*.js\"",
     "test": "jest",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon -L src/index.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "mysql2": "^2.3.3",
-    "sqlite3": "^5.1.5",
+    "mysql2": "^3.9.8",
+    "sqlite3": "^5.1.2",
     "uuid": "^9.0.0",
     "wait-port": "^1.0.4"
   },
